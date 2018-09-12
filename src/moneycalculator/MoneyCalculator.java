@@ -10,12 +10,12 @@ import java.util.Scanner;
 
 
 public class MoneyCalculator {
-        public static void main(String[] args) throws IOException {
-        System.out.println("Introduce una cantidad de dolares: ");
-        Scanner scanner = new Scanner(System.in);
-        double amount = scanner.nextDouble();
-        double exchangerate = getExchangeRate("USD","EUR");
-        System.out.println(amount + " USD equivale a " + amount*exchangerate + " EUR");
+    
+    double amount, exchangerate;
+    
+    public static void main(String[] args) throws IOException {
+        MoneyCalculator moneycalculator = new MoneyCalculator();
+        moneycalculator.control();
     }
 
     private static double getExchangeRate(String from, String to) throws IOException {
@@ -28,7 +28,25 @@ public class MoneyCalculator {
             return Double.parseDouble(line1);
         }
     }
-    
-    
+
+    private void control() throws IOException {
+        input();
+        process();
+        output();
+    }
+
+    private void input() {
+        System.out.println("Introduce una cantidad de dolares: ");
+        Scanner scanner = new Scanner(System.in);
+        amount = scanner.nextDouble();
+    }
+
+    private void process() throws IOException {
+        exchangerate = getExchangeRate("USD","EUR");
+    }
+
+    private void output() {
+        System.out.println(amount + " USD equivale a " + amount*exchangerate + " EUR");
+    }
 }
 
