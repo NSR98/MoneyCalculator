@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class MoneyCalculator {
     
     double amount, exchangerate;
+    String currency;
     
     public static void main(String[] args) throws IOException {
         MoneyCalculator moneycalculator = new MoneyCalculator();
@@ -36,17 +37,19 @@ public class MoneyCalculator {
     }
 
     private void input() {
-        System.out.println("Introduce una cantidad de dolares: ");
+        System.out.println("Introduce una cantidad: ");
         Scanner scanner = new Scanner(System.in);
         amount = scanner.nextDouble();
+        System.out.println("Introduce una divisa: ");
+        currency = scanner.next().toUpperCase();
     }
 
     private void process() throws IOException {
-        exchangerate = getExchangeRate("USD","EUR");
+        exchangerate = getExchangeRate(currency,"EUR");
     }
 
     private void output() {
-        System.out.println(amount + " USD equivale a " + amount*exchangerate + " EUR");
+        System.out.println(amount + " " + currency + " equivale a " + amount*exchangerate + " EUR");
     }
 }
 
