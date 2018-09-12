@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class MoneyCalculator {
     
     double amount, exchangerate;
-    String currency;
+    String currencyFrom, currencyTo;
     
     public static void main(String[] args) throws IOException {
         MoneyCalculator moneycalculator = new MoneyCalculator();
@@ -40,16 +40,18 @@ public class MoneyCalculator {
         System.out.println("Introduce una cantidad: ");
         Scanner scanner = new Scanner(System.in);
         amount = scanner.nextDouble();
-        System.out.println("Introduce una divisa: ");
-        currency = scanner.next().toUpperCase();
+        System.out.println("Introduce una divisa inicial: ");
+        currencyFrom = scanner.next().toUpperCase();
+        System.out.println("Introduce una divisa final: ");
+        currencyTo = scanner.next().toUpperCase();
     }
 
     private void process() throws IOException {
-        exchangerate = getExchangeRate(currency,"EUR");
+        exchangerate = getExchangeRate(currencyFrom,currencyTo);
     }
 
     private void output() {
-        System.out.println(amount + " " + currency + " equivale a " + amount*exchangerate + " EUR");
+        System.out.println(amount + " " + currencyFrom + " equivale a " + amount*exchangerate + " " + currencyTo);
     }
 }
 
